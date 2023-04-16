@@ -38,7 +38,7 @@ body{
     height: 80px;
     border: none;
     border-radius: 50%;
-    background-image: url(search-icon.png); /* set the background image */
+    background-image: url(Media/search-icon.png); /* set the background image */
     background-size: 60px; /* adjust the background size to fit the image inside the button */
     background-position: right 11px bottom 12px; /* center the background image inside the button */
     background-repeat: no-repeat;
