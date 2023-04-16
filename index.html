@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Weather App</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div class="card">
+            <div class="search">
+                <input type="text" placeholder="Enter the Location" spellcheck="false">
+                <button></button>
+            </div>
+            <br><br>
+            <div class="weather">
+                <div class="weather-icon">
+                    <img src="showers.gif" alt="Showers" class="weather-icon" width="150px" height="150px">
+                    <h1 class="temp">17°C</h1>
+                    <h2 class="location">Adelaide</h2>
+                    
+                    <div class="details">
+                        <div class="col">
+                            <img src="humidity.png">
+                            <div>
+                                <p class="humidity">73%</p><br>
+                                <p>Humidity</p>
+                            </div>
+                        </div>
+    
+                        <div class="col">
+                            <img src="windflow.png">
+                            <div>
+                                <p class="wind">15km/h</p><br>
+                                <p>Wind Speed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const apiKey = "00490dc387c9f8a2ca2401e2611d89bb";
+            const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+            const searchBox = document.querySelector(".search input");
+            const searchBtn = document.querySelector(".search button");
+            const weatherIcon = document.querySelector(".weather-icon img"); 
+
+            // Object mapping weather conditions to image file names
+            const weatherIcons = {
+                "Clouds": "cloudy.gif",
+                "Clear": "sunny.gif",
+                "Rain": "showers.gif",
+                "Drizzle": "showers.gif",
+                "Mist": "mist.gif",
+                "Haze": "mist.gif",
+                "Snow": "snow.gif",
+                "Smoke": "mist.gif"
+            };
+
+            async function checkWeather(city){
+                const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+                var data = await response.json();
+
+                document.querySelector(".location").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";
+
+                // Update weather icon based on weather condition
+                const weatherCondition = data.weather[0].main;
+                weatherIcon.src = weatherIcons[weatherCondition];
+
+                console.log(data);
+                document.querySelector(".weather").style.display = "block";
+                console.log(data);
+            }
+
+            searchBtn.addEventListener("click", ()=>{
+                checkWeather(searchBox.value);
+            });
+
+            // Default to showing weather for Adelaide on page load
+            checkWeather("Adelaide");
+        </script>
+
+    </body>
+
+</html>
