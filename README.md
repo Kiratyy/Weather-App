@@ -1,8 +1,6 @@
 # Weather-App
-# Project 1 - 7 DAYS 7 PROJECTS
 
-This series focuses on developing my skills in the Front End and Back End area of Software/Web Development.
-Each project is carefully chosen where each project gets harder every day.
+The series of projects focuses on developing my skills in the Front End and Back End area of Software/Web Development.
 
 Weather App
 Uses the Open Weather Map API. Entering the location and will provide real time data i.e. Temperature, Humidity and Wind Speed of the entered location.
